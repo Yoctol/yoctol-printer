@@ -1,4 +1,3 @@
-import fs from 'fs';
 import { tmpDir } from 'os';
 import multer from 'koa-multer';
 const upload = multer({ dest: tmpDir() });
@@ -20,7 +19,7 @@ router.post('/', upload.fields(uploadFields), async (ctx) => {
   const file = ctx.req.files.file[0];
 
   printer.printFile({
-    data: fs.readFileSync(file),
+    filename: file.path,
     success: (jobID) => {
       console.log(`sent to printer with ID: ${jobID}`);
     },
