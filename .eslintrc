@@ -1,6 +1,6 @@
 {
 	"parser": "babel-eslint",
-	"extends": "airbnb",
+	"extends": "yoctol/base",
 	"env": {
 		"browser": true,
 		"node": true
