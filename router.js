@@ -18,7 +18,15 @@ const uploadFields = [
 router.post('/', upload.fields(uploadFields), async (ctx) => {
   const file = ctx.req.files.file[0];
 
-  printer.printFile(file.path);
+  printer.printFile({
+    filename: file.path,
+    success: (jobID) => {
+      console.log(`sent to printer with ID: ${jobID}`);
+    },
+    error: (err) => {
+      console.log(err);
+    },
+  });
 });
 
 export default router;
