@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: 0 */
 import co from 'co';
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';

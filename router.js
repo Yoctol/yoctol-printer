@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: 0 */
 import { tmpDir } from 'os';
 import multer from 'koa-multer';
 const upload = multer({ dest: tmpDir() });

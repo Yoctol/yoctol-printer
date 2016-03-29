@@ -26,6 +26,7 @@
     "eslint-config-yoctol": "^0.2.0"
   },
   "scripts": {
-    "start": "babel-node ./bin/run"
+    "start": "babel-node ./bin/run",
+    "lint": "eslint router.js server.js bin lib public"
   }
 }
