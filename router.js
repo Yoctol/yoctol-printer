@@ -22,13 +22,13 @@ router.post('/', upload.fields(uploadFields), async (ctx) => {
     filename: file.path,
     success: (jobID) => {
       console.log(`sent to printer with ID: ${jobID}`);
+      ctx.status = 201;
     },
     error: (err) => {
       console.log(err);
+      ctx.status = 422;
     },
   });
-
-  ctx.redirect('/');
 });
 
 export default router;

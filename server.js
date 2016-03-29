@@ -5,6 +5,7 @@ import logger from 'koa-logger';
 import session from 'koa-session';
 import views from 'koa-views';
 import convert from 'koa-convert';
+import serve from 'koa-static';
 import finalHandler from './lib/middlewares/finalHandler';
 import router from './router';
 
@@ -13,8 +14,8 @@ const app = new Koa();
 app.use(finalHandler());
 app.use(convert(views(`${__dirname}/views`, {
   map: {
-    html: 'nunjucks'
-  }
+    html: 'nunjucks',
+  },
 })));
 app.use(async (ctx, next) => {
   ctx.render = co.wrap(ctx.render);
@@ -24,6 +25,7 @@ app.use(logger());
 app.use(convert(bodyParser()));
 app.keys = ['some secret hurr'];
 app.use(convert(session(app)));
+app.use(convert(serve('public')));
 app
   .use(router.routes())
   .use(router.allowedMethods());
