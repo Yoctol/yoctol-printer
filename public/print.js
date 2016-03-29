@@ -6,6 +6,17 @@
   $('form').on('submit', function (e) {
     e.preventDefault();
 
+    if ($('#file')[0].files.length < 1) {
+      swal('請選擇檔案', '你沒選啊', 'error');
+      return;
+    }
+
+    if ($('#file')[0].files[0].name.toLowerCase().slice(-4) !== '.pdf') {
+      swal('副檔名錯誤', '只接受 .pdf 檔案', 'error');
+      return;
+    }
+
+    var formElm = this;
     var fd = new FormData(this);
 
     $.ajax({
@@ -18,6 +29,7 @@
     })
     .then(function () {
       swal('文件已上傳', '請耐心等候', 'success');
+      formElm.reset();
     }, function () {
       swal('Oops!', 'something went wrong', 'error');
     });
