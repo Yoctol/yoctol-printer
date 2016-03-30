@@ -1,5 +1,4 @@
 /* eslint no-param-reassign: 0 */
-import co from 'co';
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import logger from 'koa-logger';
@@ -13,20 +12,16 @@ import router from './router';
 const app = new Koa();
 
 app.use(finalHandler());
-app.use(convert(views(`${__dirname}/views`, {
+app.use(views(`${__dirname}/views`, {
   map: {
     html: 'nunjucks',
   },
-})));
-app.use(async (ctx, next) => {
-  ctx.render = co.wrap(ctx.render);
-  await next();
-});
+}));
 app.use(logger());
-app.use(convert(bodyParser()));
+app.use(bodyParser());
 app.keys = ['some secret hurr'];
 app.use(convert(session(app)));
-app.use(convert(serve('public')));
+app.use(serve('public'));
 app
   .use(router.routes())
   .use(router.allowedMethods());
