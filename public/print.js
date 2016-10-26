@@ -25,7 +25,6 @@
       data: fd,
       processData: false,
       contentType: false,
-      dataType: 'json',
     })
     .then(function () {
       swal('文件已上傳', '請耐心等候', 'success');
