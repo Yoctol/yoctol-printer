@@ -30,7 +30,8 @@
     .then(function () {
       swal('文件已上傳', '請耐心等候', 'success');
       formElm.reset();
-    }, function () {
+    })
+    .catch(function () {
       swal('Oops!', 'something went wrong', 'error');
     });
   });
