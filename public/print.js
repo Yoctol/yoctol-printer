@@ -1,7 +1,5 @@
 /* global $, swal */
 /* eslint prefer-arrow-callback: 0, no-var: 0, func-names: 0, vars-on-top: 0 */
-'use strict';
-
 (function () {
   $('form').on('submit', function (e) {
     e.preventDefault();
