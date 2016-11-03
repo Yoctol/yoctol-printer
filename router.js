@@ -1,11 +1,11 @@
 /* eslint no-param-reassign: 0 */
 import { tmpDir } from 'os';
-import multer from 'koa-multer';
-const upload = multer({ dest: tmpDir() });
 
+import multer from 'koa-multer';
+import Router from 'koa-router';
 import printer from 'printer';
 
-import Router from 'koa-router';
+const upload = multer({ dest: tmpDir() });
 const router = new Router();
 
 router.get('/', async (ctx) => {
