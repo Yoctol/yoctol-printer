@@ -1,0 +1,19 @@
+# circle.yml
+machine:
+  node:
+    version: 6
+  python:
+    version: 2.7
+
+dependencies:
+  cache_directories:
+    - ./node_modules
+
+  override:
+    - sudo apt-get install libcups2-dev
+    - npm install:
+        pwd: ./
+
+test:
+  override:
+    - npm run lint
