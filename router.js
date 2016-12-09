@@ -8,7 +8,7 @@ import printer from 'printer';
 const upload = multer({ dest: tmpDir() });
 const router = new Router();
 
-router.get('/', async (ctx) => {
+router.get('/', async ctx => {
   await ctx.render('index');
 });
 
@@ -16,16 +16,16 @@ const uploadFields = [
   { name: 'file', maxCount: 1 },
 ];
 
-router.post('/', upload.fields(uploadFields), async (ctx) => {
+router.post('/', upload.fields(uploadFields), async ctx => {
   const file = ctx.req.files.file[0];
 
   printer.printFile({
     filename: file.path,
-    success: (jobID) => {
+    success: jobID => {
       console.log(`sent to printer with ID: ${jobID}`);
       ctx.status = 200;
     },
-    error: (err) => {
+    error: err => {
       console.log(err);
       ctx.status = 422;
     },
